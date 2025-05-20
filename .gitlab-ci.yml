@@ -12,7 +12,7 @@ image-build:
   # select the most appropriate image for your project
   stage: build
   script:
-  #dckr_pat_l_m4CCbTXMvKg5VE22hH8nCcfEA
+  #
     - docker login -u nguyenthaidien -p 
     - mvn clean
     - mvn package -DskipTests=true
