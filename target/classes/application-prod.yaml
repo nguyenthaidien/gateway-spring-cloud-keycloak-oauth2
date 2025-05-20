@@ -1,0 +1,68 @@
+server:
+  port: 9090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#Eureka client        
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: apigateway
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 20
+    lease-expiration-duration-in-seconds: 60
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: product-service
+          uri: http://product-service:9193
+          predicates:
+            - Path=/product/**  
+        - id: /book-service
+          uri: http://book-service:9195
+          predicates:
+            - Path=/api/rows      
+#diennt                 
+  security:
+    oauth2:
+      client:
+        provider:
+          my-keycloak-provider:
+            issuer-uri: http://10.82.14.80:8080/realms/DCMS-Realm
+            # Individual properties can also be provided this way
+#            token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
+#            authorization-uri: http://10.82.14.80:8080/auth/realms/My-Realm/protocol/openid-connect/auth
+#            userinfo-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/userinfo
+#            user-name-attribute: preferred_username
+        registration:
+          keycloak-spring-gateway-client:
+            provider: my-keycloak-provider
+            scope: openid
+            client-id: spring-gateway-client
+            client-secret: 8jygr7B4q5NdnGjKviREZxM227spjiix
+            authorization-grant-type: authorization_code
+            #redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+# Enable these to debug the Authorization flow
+logging:
+    level:
+      org:
+        springframework:
+          security:
+            web: DEBUG
+          hibernate: ERROR
+    file:
+      name: logs/application-debug.log
+      max-size: 2MB
+    pattern:
+      console: "%d %-5level %logger : %msg%n"
+      file: "%d %-5level [%thread] %logger : %msg%n"

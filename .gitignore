@@ -1,4 +1,2 @@
-/target
-/logs
 *.log
 logs/application-debug.log
