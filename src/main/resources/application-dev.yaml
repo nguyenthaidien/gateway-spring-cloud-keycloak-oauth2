@@ -58,7 +58,7 @@ logging:
       org:
         springframework:
           security:
-            web: DEBUG
+            web: WARN
           hibernate: ERROR
     file:
       name: logs/application-debug.log
