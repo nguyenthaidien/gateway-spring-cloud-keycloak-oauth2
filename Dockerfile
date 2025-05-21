@@ -25,5 +25,6 @@ RUN sh -c 'touch /app.jar'
 
 # entrypoint to the image on run
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar", "--spring.profiles.active=prod"]
+#
 EXPOSE 8761
-
+EXPOSE 9090

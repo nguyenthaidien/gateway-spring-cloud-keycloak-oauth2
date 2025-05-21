@@ -1,8 +1,11 @@
 # gateway-spring-cloud-keycloak-oauth2
 #Deffault enviroment: spring:profiles:active: dev
 #chay chuong trinh moi truong dev
-mvn spring-boot:run
-mvn spring-boot:run -Dspring.profiles.active=prod
+#Huong dan chay chuong trinh
+Terminal --> New Terminal
+PS >cmd
+>mvn spring-boot:run
+>mvn spring-boot:run -Dspring.profiles.active=prod
 
 ## Getting started
 

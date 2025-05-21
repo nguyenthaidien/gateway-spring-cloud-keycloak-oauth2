@@ -37,7 +37,7 @@ spring:
       client:
         provider:
           my-keycloak-provider:
-            issuer-uri: http://10.82.14.80:8080/realms/DCMS-Realm
+            issuer-uri: https://10.82.14.80:8443/realms/DCMS-Realm
             # Individual properties can also be provided this way
 #            token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
 #            authorization-uri: http://10.82.14.80:8080/auth/realms/My-Realm/protocol/openid-connect/auth

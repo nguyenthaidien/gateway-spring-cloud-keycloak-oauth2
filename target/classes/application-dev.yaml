@@ -1,5 +1,11 @@
 server:
   port: 9090
+  # ssl:
+  #   enabled: false
+  #   key-store: ./keystore.p12
+  #   key-store-password: your-password
+  #   key-store-type: PKCS12
+
 management:
   endpoints:
     web:
@@ -37,9 +43,10 @@ spring:
       client:
         provider:
           my-keycloak-provider:
-            issuer-uri: http://10.82.14.80:8080/realms/DCMSDEV-Realm
+            issuer-uri: http://10.82.14.80:8080/realms/DCMS-Realm
+            #authorization-uri: https://10.82.14.80:9443/realms/DCMS-Realm
             # Individual properties can also be provided this way
-#            token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
+   #         token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
 #            authorization-uri: http://10.82.14.80:8080/auth/realms/My-Realm/protocol/openid-connect/auth
 #            userinfo-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/userinfo
 #            user-name-attribute: preferred_username
@@ -58,7 +65,7 @@ logging:
       org:
         springframework:
           security:
-            web: DEBUG
+            web: WARN
           hibernate: ERROR
     file:
       name: logs/application-debug.log
