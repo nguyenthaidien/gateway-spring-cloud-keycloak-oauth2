@@ -1,3 +1,8 @@
 com\amrut\prabhu\oauth2\client\Controller.class
 com\amrut\prabhu\oauth2\client\SecurityConfig.class
 com\amrut\prabhu\oauth2\client\SpringOauth2ClientApplication.class
+static\logout.html
+application-prod.yaml
+application-dev.yaml
+application.yaml
+static\index.html
