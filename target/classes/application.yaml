@@ -1,3 +1,46 @@
+server:
+  port: 9090
+    # ssl:
+  #   enabled: false
+  #   key-store: ./keystore.p12
+  #   key-store-password: your-password
+  #   key-store-type: PKCS12
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:  
+    health:
+      show-details: always
+
 spring:
   profiles:
     active: dev
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: user-service
+          uri: http://user-service:9091
+          predicates:
+            - Path=/api/user/**
+        - id: book-service
+          uri: http://book-service:9195
+          predicates:
+            - Path=/api/rows         
+
+#Eureka client        
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    appname: apigateway
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 20
+    lease-expiration-duration-in-seconds: 60
+

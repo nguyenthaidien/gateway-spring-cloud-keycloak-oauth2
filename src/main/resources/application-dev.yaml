@@ -1,48 +1,55 @@
-server:
-  port: 9090
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+# server:
+#   port: 9090
+  # ssl:
+  #   enabled: false
+  #   key-store: ./keystore.p12
+  #   key-store-password: your-password
+  #   key-store-type: PKCS12
+
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: "*"
 #Eureka client        
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
-    healthcheck:
-      enabled: true
-  instance:
-    appname: apigateway
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 20
-    lease-expiration-duration-in-seconds: 60
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://eureka-server:8761/eureka/
+#     healthcheck:
+#       enabled: true
+#   instance:
+#     appname: apigateway
+#     prefer-ip-address: true
+#     lease-renewal-interval-in-seconds: 20
+#     lease-expiration-duration-in-seconds: 60
+# spring:
+#   cloud:
+#     gateway:
+#       default-filters:
+#         - TokenRelay
+#       routes:
+#         - id: user-service
+#           uri: http://user-service:9091
+#           predicates:
+#             - Path=/api/user/**  
+#         - id: book-service
+#           uri: http://book-service:9195
+#           predicates:
+#             - Path=/api/rows      
+#diennt      
+
 spring:
-  cloud:
-    gateway:
-      default-filters:
-        - TokenRelay
-      routes:
-        - id: product-service
-          uri: http://product-service:9193
-          predicates:
-            - Path=/product/**  
-        - id: /book-service
-          uri: http://book-service:9195
-          predicates:
-            - Path=/api/rows      
-#diennt                 
   security:
     oauth2:
       client:
         provider:
           my-keycloak-provider:
-            issuer-uri: http://10.82.14.80:8080/realms/DCMSDEV-Realm
+            issuer-uri: http://10.82.14.80:8080/realms/DCMS-Realm
+            #authorization-uri: https://10.82.14.80:9443/realms/DCMS-Realm
             # Individual properties can also be provided this way
-#            token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
-#            authorization-uri: http://10.82.14.80:8080/auth/realms/My-Realm/protocol/openid-connect/auth
-#            userinfo-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/userinfo
-#            user-name-attribute: preferred_username
+   #         token-uri: http://localhost:8080/auth/realms/amrutrealm/protocol/openid-connect/token
+
         registration:
           keycloak-spring-gateway-client:
             provider: my-keycloak-provider

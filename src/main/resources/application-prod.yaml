@@ -1,37 +1,9 @@
-server:
-  port: 9090
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-#Eureka client        
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
-    healthcheck:
-      enabled: true
-  instance:
-    appname: apigateway
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 20
-    lease-expiration-duration-in-seconds: 60
-spring:
-  cloud:
-    gateway:
-      default-filters:
-        - TokenRelay
-      routes:
-        - id: product-service
-          uri: http://product-service:9193
-          predicates:
-            - Path=/product/**  
-        - id: /book-service
-          uri: http://book-service:9195
-          predicates:
-            - Path=/api/rows      
-#diennt                 
+
+
+
+   
+#diennt     
+spring:         
   security:
     oauth2:
       client:
@@ -52,6 +24,8 @@ spring:
             authorization-grant-type: authorization_code
             #redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+# management.endpoints.web.exposure.include=health,info,metrics
+# management.endpoint.health.show-details=always        
 # Enable these to debug the Authorization flow
 logging:
     level:

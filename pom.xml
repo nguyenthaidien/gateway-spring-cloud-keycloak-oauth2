@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.amrut.prabhu</groupId>
-	<artifactId>spring-cloud-gateway-keycloak-oauth2</artifactId>
+	<artifactId>apigateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring Cloud Gateway Oauth2 With Keycloak</name>
 	<description>spring cloud gateway with keycloak oauth2</description>

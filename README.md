@@ -1,8 +1,17 @@
 # gateway-spring-cloud-keycloak-oauth2
 #Deffault enviroment: spring:profiles:active: dev
 #chay chuong trinh moi truong dev
-mvn spring-boot:run
-mvn spring-boot:run -Dspring.profiles.active=prod
+#Huong dan chay chuong trinh
+Terminal --> New Terminal
+PS >cmd
+>mvn spring-boot:run
+>mvn spring-boot:run -Dspring.profiles.active=prod
+--
+
+spring-boot apigateway https spring-boot-starter-oauth2-client
+#Copilot prompt
+API Gateway using Spring Boot, the go-to solution is Spring Cloud Gateway. It acts as a single entry point for client requests and routes them to appropriate backend microservices. Here's a quick guide to get you started:
+
 
 ## Getting started
 
