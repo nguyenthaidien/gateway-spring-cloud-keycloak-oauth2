@@ -26,17 +26,3 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
 # management.endpoints.web.exposure.include=health,info,metrics
 # management.endpoint.health.show-details=always        
-# Enable these to debug the Authorization flow
-logging:
-    level:
-      org:
-        springframework:
-          security:
-            web: DEBUG
-          hibernate: ERROR
-    file:
-      name: logs/application-debug.log
-      max-size: 2MB
-    pattern:
-      console: "%d %-5level %logger : %msg%n"
-      file: "%d %-5level [%thread] %logger : %msg%n"

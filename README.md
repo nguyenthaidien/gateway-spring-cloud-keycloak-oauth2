@@ -11,6 +11,13 @@ PS >cmd
 spring-boot apigateway https spring-boot-starter-oauth2-client
 #Copilot prompt
 API Gateway using Spring Boot, the go-to solution is Spring Cloud Gateway. It acts as a single entry point for client requests and routes them to appropriate backend microservices. Here's a quick guide to get you started:
+#
+guide me create an maven project spring-boot 3.4.7 name  api-gateway 
+java 17
+port 9090
+spring.application.name: api-gateway
+with keycloak oauth2.client
+route using eureka-server
 
 
 ## Getting started

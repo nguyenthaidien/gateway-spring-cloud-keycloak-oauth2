@@ -14,23 +14,6 @@ management:
     health:
       show-details: always
 
-spring:
-  profiles:
-    active: dev
-  cloud:
-    gateway:
-      default-filters:
-        - TokenRelay
-      routes:
-        - id: user-service
-          uri: http://user-service:9091
-          predicates:
-            - Path=/api/user/**
-        - id: book-service
-          uri: http://book-service:9195
-          predicates:
-            - Path=/api/rows         
-
 #Eureka client        
 eureka:
   client:
@@ -43,4 +26,61 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 20
     lease-expiration-duration-in-seconds: 60
+# Enable these to debug the Authorization flow
+logging:
+    level:
+      org:
+        springframework:
+          security:
+            web: DEBUG
+            oauth2: DEBUG
+          hibernate: ERROR
+          web: DEBUG
+          
+            
+    file:
+      name: logs/application-debug.log
+      max-size: 2MB
+    pattern:
+      console: "%d %-5level %logger : %msg%n"
+      file: "%d %-5level [%thread] %logger : %msg%n"
+
+
+
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: user-service
+          uri: http://user-service:9194
+          predicates:
+            - Path=/user/**
+        - id: user-service2
+          uri: http://user-service:9194
+          predicates:
+            - Path=/api/user/**            
+        - id: book-service
+          uri: http://book-service:9195
+          predicates:
+            - Path=/rows/**      
+
+        # - id: service-a
+        #   uri: lb://SERVICE-A
+        #   predicates:
+        #     - Path=/api/service-a/**
+        #   filters:
+        #     - RewritePath=/api/service-a/(?<segment>.*), /${segment}
+
+        # - id: service-b
+        #   uri: lb://SERVICE-B
+        #   predicates:
+        #     - Path=/api/service-b/**
+        #   filters:
+        #     - RewritePath=/api/service-b/(?<segment>.*), /${segment}
+
 

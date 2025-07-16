@@ -6,27 +6,31 @@ import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcCli
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
 
 @Configuration
 public class SecurityConfig {
 
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http, ServerLogoutSuccessHandler handler) {
-		http
-				.authorizeExchange()
-				.pathMatchers("/actuator/**", "/","/logout.html")
-				.permitAll()
-			.and()
-				.authorizeExchange()
-				.anyExchange()
-				.authenticated()
-			.and()
-				.oauth2Login() // to redirect to oauth2 login page.
-			.and()
-				.logout()
-				.logoutSuccessHandler(handler)
-		;
+		// http
+		// 		.authorizeExchange()			
+		// 			.pathMatcher("/actuator/**", "/","/logout.html")
+		// 			.permitAll()
+		// 	.and()
+		// 		.authorizeExchange()
+		// 		.anyExchange()
+		// 		.authenticated()
+		// 	.and()
+		// 		.oauth2Login() // to redirect to oauth2 login page.
+		// 	.and()
+		// 		.logout()
+		// 		.logoutSuccessHandler(handler)
 
+		// ;
+		http.authorizeExchange().anyExchange().permitAll();
 		return http.build();
 	}
 
