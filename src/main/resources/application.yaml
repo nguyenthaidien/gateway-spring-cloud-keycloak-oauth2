@@ -57,17 +57,14 @@ spring:
         - TokenRelay
       routes:
         - id: user-service
-          uri: http://user-service:9194
+          uri: http://10.82.14.80:9194
           predicates:
-            - Path=/user/**
-        - id: user-service2
-          uri: http://user-service:9194
+            - Path=/api/user/**
+        - id: mock-service
+          uri: http://10.82.14.80:3000
           predicates:
-            - Path=/api/user/**            
-        - id: book-service
-          uri: http://book-service:9195
-          predicates:
-            - Path=/rows/**      
+            - Path=/mock/**
+   
 
         # - id: service-a
         #   uri: lb://SERVICE-A
